@@ -1,0 +1,18 @@
+[/Script/Pavlov.DedicatedServer]
+bEnabled=true
+ServerName="Your_name_server"
+MaxPlayers=10     #Set this to 10 for Shack.
+ApiKey="ABC123FALSEKEYDONTUSEME"
+bSecured=true
+bCustomServer=false 
+bVerboseLogging=false 
+bCompetitive=false #This only works for SND
+bWhitelist=false 
+RefreshListTime=120 
+LimitedAmmoType=0 
+TickRate=90
+TimeLimit=60
+#Password=0000 
+BalanceTableURL="vankruptgames/BalancingTable/main"
+MapRotation=(MapId="datacenter", GameMode="SND")
+MapRotation=(MapId="sand", GameMode="DM")

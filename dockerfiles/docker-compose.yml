@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  pavlov-shack-server:
+    image: powersjk/pavlov-vr-shack-server:latest
+    ports:
+      - "7000:7000/udp"
+      - "7400:7400/udp" 
+      - "7777:7777"
+      - "7777:7777/udp"
+      - "8177:8177"
+      - "8177:8177/udp"
+      - "9100:9100"
+    
+    environment:
+      SERVER_NAME: Your_name_server
+
+    volumes:
+      - pavlovData:/home/steam/pavlovserver/Pavlov/Saved
+
+volumes:
+  pavlovData:
