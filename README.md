@@ -3,6 +3,12 @@ This image provides a server to Pavlov VR Shack (Meta Quest only)
 
 
 ## The Image
+
+### Tags
+`1.1.0`, `latest`: All maps of [PavlovHorde](https://pavlovhorde.com/mapsList) and Auto-Update
+
+`1.0.0`: Initial version, few maps
+
 ### To build
 ```
 docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
@@ -17,33 +23,29 @@ docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 77
 * **SERVER_NAME**(Mandatory): This is the name of your server
 * **RCON_PWD**(Optional): Password to enable the RCON access.
 * **RCON_PORT**(Optional): Port to RCON access, default value = 9100
-* **UPDATE_SERVER**(Optional): Update steam client and Pavlov Server when starting container, default value = True
 
-The RCON is only enabled if you set a password.
-
-The Pavlov Server and the Steam client always update when the container starts, except if you change it.
+The RCON is only enabled if you set a password
 
 ### Compose
 ```
 docker-compose up -d
 ```
-You can use the file `.env` to set all the variables
-
-**Warning**: Do not forget to change the variable SERVER_NAME.
-
+**Warning**: Do not forget to change the variable SERVER_NAME in the docker-compose.yml file (or add new variables).
 
 ## Maps
-This image has all the images from [Pavlov Horde](https://pavlovhorde.com/mapsList).
-For default only the maps `datacenter` and `sand` are available, to enable the map please remove the comments tags in the file `Game.ini.template` and restart your container.
+This image provides only the maps available in the  
 
 ## Custom Maps
-You can add new maps, to do this you will need to download them and copy to folder `/home/steam/pavlovserver/Pavlov/Saved/maps`.
+To download more maps you will need to download them and copy to folder `/home/steam/pavlovserver/Pavlov/Saved/maps`.
+You can download all the custom maps using this [script](https://cdn.discordapp.com/attachments/841189246903386122/898218113223516241/inst-all.sh).
 
-After downloading the maps, enable the maps adding this line in the file `Game.ini.template` and restart the server.
+One copy of this script already exists in the folder `/home/steam/pavlovserver/Pavlov/Saved/maps`, you can run it :smiley:.
+
+After downloading the maps, enable the maps adding this line in the file `Game.ini`
 ```
 MapRotation=(MapId="<name_map>", GameMode="<game_mode>") 
 ```
-You can access a list of custom maps by this [link](https://pavlovhorde.com/mapsList)
+You can see a list of these lines in the file `/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/maplist.txt`
 
 ## Check server
 You can check if your server is available looking for him on the page:
@@ -53,3 +55,5 @@ https://pavlovhorde.com/
 These commands and links used was extracted from http://wiki.pavlov-vr.com/index.php?title=Dedicated_server
 
 Doubts about `game_mode`,  `name_map`, `ports` please check the link above.
+
+
