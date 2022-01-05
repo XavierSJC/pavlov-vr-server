@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ "$UPDATE_SERVER" = "True" ] 
+then
+    /home/steam/pavlovserver/update_pavlov.sh    
+fi
+
 if [ "$SERVER_NAME" = "Your_name_server" ] 
 then
     echo "Please use the environment variable SERVER_NAME to configure a name for your server"
