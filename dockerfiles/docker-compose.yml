@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.2"
 services:
   pavlov-shack-server:
     image: powersjk/pavlov-vr-shack-server:latest
@@ -9,10 +9,13 @@ services:
       - "7777:7777/udp"
       - "8177:8177"
       - "8177:8177/udp"
-      - "9100:9100"
+      - "${RCON_PORT-9100}:${RCON_PORT-9100}"
     
     environment:
       SERVER_NAME: Your_name_server
+      RCON_PWD: ChangeThisPassword
+      RCON_PORT: ${RCON_PORT-9100}
+      UPDATE_SERVER: "True"
 
     volumes:
       - pavlovData:/home/steam/pavlovserver/Pavlov/Saved
