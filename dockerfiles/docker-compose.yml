@@ -18,7 +18,7 @@ services:
       UPDATE_SERVER: "True"
 
     volumes:
-      - pavlovData:/home/steam/
+      - pavlovData:/home/steam/pavlovserver/Pavlov/Saved
 
 volumes:
   pavlovData:
