@@ -16,7 +16,7 @@ docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
 
 ### To execute this container
 ```
-docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME=<your_server_name> -e [RCON_PWD=<rcon_password>] -e [RCON_PORT=<rcon_port>] -v pavlovData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
+docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME=<your_server_name> -e [RCON_PWD=<rcon_password>] -e [RCON_PORT=<rcon_port>] -e [UPDATE_SERVER=True] -v pavlovData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
 ```
 
 **Environment Variable**
