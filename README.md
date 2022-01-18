@@ -5,9 +5,11 @@ This image provides a server to Pavlov VR Shack (Meta Quest only)
 ## The Image
 
 ### Tags
-`1.1.0`, `latest`: Auto-Update
+[`1.2.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/f187abb628b51e2ad37dcd3b6579320702ef4adf), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/f187abb628b51e2ad37dcd3b6579320702ef4adf): Removed template files
 
-`1.0.0`: Initial version, few maps
+[`1.1.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/af2a539d8f4c621f1f07d812a95a45d3aeb9e600): Auto-Update
+
+[`1.0.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/4ab7d61c2e6be669e021fd034f5db540d5e243ac): Initial version
 
 ### To build
 ```
