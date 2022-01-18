@@ -35,15 +35,15 @@ RUN touch /home/steam/pavlovserver/Pavlov/Saved/Config/blacklist.txt
 RUN touch /home/steam/pavlovserver/Pavlov/Saved/Config/whitelist.txt
 
 # Configuration and map list
-COPY --chown=steam:steam ../configfiles/Game.ini.template /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/
+COPY --chown=steam:steam ../configfiles/Game.ini /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/
 
 # Configure RCON
-COPY --chown=steam:steam ../configfiles/RconSettings.txt.template /home/steam/pavlovserver/Pavlov/Saved/Config/
+COPY --chown=steam:steam ../configfiles/RconSettings.txt /home/steam/pavlovserver/Pavlov/Saved/Config/
 
 COPY --chown=steam:steam ../configfiles/ConfigureServer.sh /home/steam/pavlovserver/
 COPY --chown=steam:steam ../configfiles/update_pavlov.sh /home/steam/pavlovserver/
 
-# Update the templates files by the environment variables
+# Update the configure files by the environment variables
 RUN chmod +x /home/steam/pavlovserver/ConfigureServer.sh
 RUN chmod +x /home/steam/pavlovserver/update_pavlov.sh
 
