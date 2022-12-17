@@ -5,7 +5,9 @@ This image provides a server to Pavlov VR Shack (Meta Quest only)
 ## The Image
 
 ### Tags
-[`1.2.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.2.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Removed template files
+[`1.3.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.3.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Small improvements to avoid duplicated code
+
+[`1.2.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.2.0): Removed template files
 
 [`1.1.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.1.0): Auto-Update
 
@@ -18,7 +20,7 @@ docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
 
 ### To execute this container
 ```
-docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME=<your_server_name> -e [RCON_PWD=<rcon_password>] -e [RCON_PORT=<rcon_port>] -e [UPDATE_SERVER=True] -v pavlovData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
+docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME=<your_server_name> [-e RCON_PWD=<rcon_password>] [-e RCON_PORT=<rcon_port>] [-e UPDATE_SERVER=True] -v pavlovData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
 ```
 
 **Environment Variable**

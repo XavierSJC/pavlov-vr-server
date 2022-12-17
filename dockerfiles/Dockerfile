@@ -13,17 +13,9 @@ RUN useradd -m steam
 USER steam
 
 # Install Pavlov Shack Server
-RUN mkdir ~/Steam && cd ~/Steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-RUN ~/Steam/steamcmd.sh +login anonymous +force_install_dir /home/steam/pavlovserver +app_update 622970 -beta shack +exit
-RUN ~/Steam/steamcmd.sh +login anonymous +app_update 1007 +quit
-
-# Update Steam client
-RUN mkdir -p ~/.steam/sdk64
-RUN cp ~/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
-RUN cp ~/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ~/pavlovserver/Pavlov/Binaries/Linux/steamclient.so
-
-# Make script runnable
-RUN chmod +x ~/pavlovserver/PavlovServer.sh
+COPY --chown=steam:steam ../configfiles/install_pavlov.sh /home/steam/pavlovserver/
+RUN chmod +x /home/steam/pavlovserver/install_pavlov.sh
+RUN /home/steam/pavlovserver/install_pavlov.sh
 
 # Server configuration
 RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/Logs
@@ -40,12 +32,9 @@ COPY --chown=steam:steam ../configfiles/Game.ini /home/steam/pavlovserver/Pavlov
 # Configure RCON
 COPY --chown=steam:steam ../configfiles/RconSettings.txt /home/steam/pavlovserver/Pavlov/Saved/Config/
 
+# Configure main script that runs server
 COPY --chown=steam:steam ../configfiles/ConfigureServer.sh /home/steam/pavlovserver/
-COPY --chown=steam:steam ../configfiles/update_pavlov.sh /home/steam/pavlovserver/
-
-# Update the configure files by the environment variables
 RUN chmod +x /home/steam/pavlovserver/ConfigureServer.sh
-RUN chmod +x /home/steam/pavlovserver/update_pavlov.sh
 
 EXPOSE 7000/udp 7400/udp 7777 7777/udp 8177 8177/udp 9100
 
