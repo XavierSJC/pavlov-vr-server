@@ -1,6 +1,21 @@
 # Pavlov VR Shack Server
 This image provides a server to Pavlov VR Shack (Meta Quest only)
 
+If you wish for other kinds of servers (Shack RC, PC, or PC Beta), you can build your own image.
+Just clone this repository, change line 13 at file [`configfiles/install_pavlov.sh`](https://raw.githubusercontent.com/XavierSJC/pavlov-vr-quest-server/main/configfiles/install_pavlov.sh) to:
+* **PC**: 
+~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 +exit
+
+* **PC Beta**: 
+~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 -beta beta_server +exit
+
+* **Shack RC**: 
+~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 -beta shack_beta +exit
+
+## To build
+```
+docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
+```
 
 ## The Image
 
@@ -12,11 +27,6 @@ This image provides a server to Pavlov VR Shack (Meta Quest only)
 [`1.1.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.1.0): Auto-Update
 
 [`1.0.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.0.0): Initial version
-
-### To build
-```
-docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
-```
 
 ### To execute this container
 ```
