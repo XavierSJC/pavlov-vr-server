@@ -2,7 +2,7 @@
 echo "Configuring Pavlov Server"
 if [ "$UPDATE_SERVER" = "True" ] 
 then
-    /home/steam/pavlovserver/update_pavlov.sh
+    /home/steam/pavlovserver/install_pavlov.sh
 fi
 
 if [ "$SERVER_NAME" = "Your_name_server" ] 
