@@ -9,8 +9,8 @@ else
   mkdir -p ~/.steam/sdk64
 fi
 
-echo "Installing Pavlov Shack"
-~/Steam/steamcmd.sh +force_install_dir ~/pavlovserver +login anonymous +app_update 622970 -beta shack +exit
+echo "Installing Pavlov Steam"
+~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 -beta shack_beta +exit
 chmod +x ~/pavlovserver/PavlovServer.sh
 
 echo "Updating Steam Client"
