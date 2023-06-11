@@ -12,10 +12,10 @@ RUN apt update && apt install -y gdb curl wget nano lib32gcc1 libc++-dev unzip
 RUN useradd -m steam
 USER steam
 
-# Install Pavlov Shack Server
-COPY --chown=steam:steam ../configfiles/install_pavlov.sh /home/steam/pavlovserver/
-RUN chmod +x /home/steam/pavlovserver/install_pavlov.sh
-RUN /home/steam/pavlovserver/install_pavlov.sh
+# Install Pavlov Server
+COPY --chown=steam:steam ../configfiles/install_pavlov_steam.sh /home/steam/pavlovserver/
+RUN chmod +x /home/steam/pavlovserver/install_pavlov_steam.sh
+RUN /home/steam/pavlovserver/install_pavlov_steam.sh
 
 # Server configuration
 RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/Logs
