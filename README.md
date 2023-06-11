@@ -1,27 +1,85 @@
-# Pavlov VR Shack Server
-This image provides a server to Pavlov VR Shack (Meta Quest only)
+# Pavlov VR Servers
+This repository provides images with server to the game [Pavlov VR Shack](https://www.oculus.com/experiences/quest/3649611198468269) and [Pavlov VR](https://store.steampowered.com/app/555160/Pavlov_VR/)
 
-After running this docker a server will be created with the specificated name, case you wish to copy new maps or change some configurations (server name or RCON password) this need to be done manually.
+## Quick Start
+The commands below provide a way to start a server with:
+* **Name Server:** My Awesome Server
+* **RCON Port:** 9100
+* **RCON Password:** 5gWXLAKCtBjA
 
-If you wish for other kinds of servers (Shack RC, PC, or PC Beta), you can build your own image.
-Just clone this repository, change line 13 at file [`configfiles/install_pavlov.sh`](https://raw.githubusercontent.com/XavierSJC/pavlov-vr-quest-server/main/configfiles/install_pavlov.sh) to:
-* **PC**: 
-~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 +exit
+**Warning:** The commands below are just a example, do **NOT** use the same passoword!
+### Pavlov STEAM
+```
+docker run -d --name pavlov-steam-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME="My Awesome Server" -e RCON_PWD=5gWXLAKCtBjA -e RCON_PORT=9100 -v pavlovPcData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-server:latest
+```
 
-* **PC Beta**: 
-~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 -beta beta_server +exit
+### Pavlov SHACK
+```
+docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME="My Awesome Server" -e RCON_PWD=5gWXLAKCtBjA -e RCON_PORT=9100 -v pavlovShackData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
+```
 
-* **Shack RC**: 
-~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 -beta shack_beta +exit
+### Pavlov SHACK RC
+```
+docker run -d --name pavlov-shack-rc-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME="My Awesome Server" -e RCON_PWD=5gWXLAKCtBjA -e RCON_PORT=9100 -v pavlovShackRCData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-rc-server:latest
+```
 
+After executing the command above your server will be available to play.
+You can check if your server is available looking for him on the page [Pavlov Horde](https://pavlovhorde.com/).
+Pay attention if you selected the right list ([Shack](https://pavlovhorde.com/), [Shack RC](https://pavlovhorde.com/serversRC) or [PC](https://pavlovhorde.com/pcServers)).
+
+## Management of your server
+### Admin Panel
+The server does not provide an admin panel but provides remote access using the RCON.
+To connect with RCON you can follow the steps described in the [Pavlov Wiki](http://wiki.pavlov-vr.com/index.php?title=Dedicated_server#Connecting_to_RCON).
+
+OR
+
+You can use these sites that provide a UI admin:
+* [Pavlov RCON](https://pavlovrcon.com/)
+* [Pavlvo HORDE](https://pavlovhorde.com/rcon)
+
+### Management maps
+These images don't provide custom maps
+
+#### Installing Custom Maps
+To download more maps you will need to download them and copy them to folder `/home/steam/pavlovserver/Pavlov/Saved/maps` inside of your container.
+You can download custom maps on the site [PavlovHorde.com](https://pavlovhorde.com/mapsList). 
+
+To copy a folder from your host to inside of a container you can use the command:
+```
+$ docker cp Desktop/folder_map 74789744g489:/home/steam/pavlovserver/Pavlov/Saved/maps
+```
+
+After downloading the maps, enable the maps in your server by adding this line in the file `/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini`
+```
+MapRotation=(MapId="<name_map>", GameMode="<game_mode>") 
+```
+
+___
+# To Advanced Docker Users
 ## To build
+You can build any of the images in this repository using the command below:
 ```
 docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
 ```
 
-## The Image
+**Environment Variable**
+* **SERVER_NAME**(Mandatory): This is the name of your server
+* **RCON_PWD**(Optional): Password to enable RCON access.
+* **RCON_PORT**(Optional): Port to RCON access, default value = 9100
+* **UPDATE_SERVER**(Optional): Update server and client on start the container, default value = "True"
 
-### Tags
+The RCON is only enabled if you set a password
+
+## Docker Compose
+You can use a compose file example to start your server.
+Download the file [docker-compose.yml](https://raw.githubusercontent.com/XavierSJC/pavlov-vr-quest-server/main/dockerfiles/docker-compose.yml) and execute:
+```
+docker-compose up -d
+```
+**Warning**: Do not forget to change the variable SERVER_NAME in the docker-compose.yml file (and other variables either).
+
+## Changes log
 [`1.4.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.4.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Avoid replace the name server and other configurations when restart the docker
 
 [`1.3.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.3.0): Small improvements to avoid duplicated code
@@ -32,45 +90,10 @@ docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
 
 [`1.0.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.0.0): Initial version
 
-### To execute this container
-```
-docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME=<your_server_name> [-e RCON_PWD=<rcon_password>] [-e RCON_PORT=<rcon_port>] [-e UPDATE_SERVER=True] -v pavlovData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
-```
 
-**Environment Variable**
-* **SERVER_NAME**(Mandatory): This is the name of your server
-* **RCON_PWD**(Optional): Password to enable the RCON access.
-* **RCON_PORT**(Optional): Port to RCON access, default value = 9100
-* **UPDATE_SERVER**(Optional): Update server and client on start the container, default value = "True"
-
-The RCON is only enabled if you set a password
-
-### Compose
-Download the file [docker-compose.yml](https://raw.githubusercontent.com/XavierSJC/pavlov-vr-quest-server/main/dockerfiles/docker-compose.yml) and execute:
-```
-docker-compose up -d
-```
-**Warning**: Do not forget to change the variable SERVER_NAME in the docker-compose.yml file (and other variables either).
-
-## Maps
-This image doesn't provides custom maps
-
-## Custom Maps
-To download more maps you will need to download them and copy to folder `/home/steam/pavlovserver/Pavlov/Saved/maps`.
-You can download custom maps in the [PavlovHorde.com](https://pavlovhorde.com/mapsList).
-
-After downloaded the maps, enable the maps adding this line in the file `/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini`
-```
-MapRotation=(MapId="<name_map>", GameMode="<game_mode>") 
-```
-
-## Check server
-You can check if your server is available looking for him on the page:
-https://pavlovhorde.com/
-
-# Reference
+# References
 These commands and links used was extracted from the [Pavlovs oficial wiki](http://wiki.pavlov-vr.com/index.php?title=Dedicated_server)
 
-Doubts about `game_mode`,  `name_map`, `ports` please check the link above.
+Doubts about `game_mode`, `name_map`, `ports` please check the link above.
 
 I recommend joining [Pavlovs Discord](https://discord.gg/pavlov-vr), where you will find help and other custom maps.
