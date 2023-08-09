@@ -41,19 +41,28 @@ You can use these sites that provide a UI admin:
 ### Management maps
 These images don't provide custom maps
 
-#### Installing Custom Maps
+#### Installing Custom Maps to SHACK version
 To download more maps you will need to download them and copy them to folder `/home/steam/pavlovserver/Pavlov/Saved/maps` inside of your container.
 You can download custom maps on the site [PavlovHorde.com](https://pavlovhorde.com/mapsList). 
 
 To copy a folder from your host to inside of a container you can use the command:
 ```
-$ docker cp Desktop/folder_map 74789744g489:/home/steam/pavlovserver/Pavlov/Saved/maps
+$ docker cp Desktop/folder_map [imageId]:/home/steam/pavlovserver/Pavlov/Saved/maps
 ```
 
 After downloading the maps, enable the maps in your server by adding this line in the file `/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini`
 ```
 MapRotation=(MapId="<name_map>", GameMode="<game_mode>") 
 ```
+You can edit this file with the command:
+```
+docker exec -it [imageId] nano /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini
+```
+
+#### Installing Custom Maps to PC
+The <name_map> must be “UGC” followed by the map ID. 
+
+You can find the map id in the [mod.io](mod.io) page. Choose the map and in the righ side of the page use de number "Resource ID".
 
 ___
 # To Advanced Docker Users
