@@ -28,7 +28,7 @@ You can check if your server is available looking for him on the page [Pavlov Ho
 Pay attention if you selected the right list ([Shack](https://pavlovhorde.com/), [Shack RC](https://pavlovhorde.com/serversRC) or [PC](https://pavlovhorde.com/pcServers)).
 
 ## Management of your server
-### Admin Panel
+### Admin Panel - Shack
 The server does not provide an admin panel but provides remote access using the RCON.
 To connect with RCON you can follow the steps described in the [Pavlov Wiki](http://wiki.pavlov-vr.com/index.php?title=Dedicated_server#Connecting_to_RCON).
 
@@ -38,10 +38,13 @@ You can use these sites that provide a UI admin:
 * [Pavlov RCON](https://pavlovrcon.com/)
 * [Pavlvo HORDE](https://pavlovhorde.com/rcon)
 
+### Admin Panel - PC and Shack RC
+The game has a admin panel on the menu game, to enable this menu put your Quest username on the file `/home/steam/pavlovserver/Pavlov/Saved/Config/mods.txt`
+
 ### Management maps
 These images don't provide custom maps
 
-#### Installing Custom Maps to SHACK version
+#### Installing Custom Maps - SHACK
 To download more maps you will need to download them and copy them to folder `/home/steam/pavlovserver/Pavlov/Saved/maps` inside of your container.
 You can download custom maps on the site [PavlovHorde.com](https://pavlovhorde.com/mapsList). 
 
@@ -59,7 +62,7 @@ You can edit this file with the command:
 docker exec -it [imageId] nano /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini
 ```
 
-#### Installing Custom Maps to PC
+#### Installing Custom Maps - PC and Shack RC
 The <name_map> must be “UGC” followed by the map ID. 
 
 You can find the map id in the [mod.io](mod.io) page. Choose the map and in the righ side of the page use de number "Resource ID".
