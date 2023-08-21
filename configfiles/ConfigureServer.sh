@@ -2,7 +2,8 @@
 echo "Configuring Pavlov Server"
 if [ "$UPDATE_SERVER" = "True" ] 
 then
-    /home/steam/pavlovserver/install_pavlov.sh
+    install_pavlov=$(find /home/steam/pavlovserver/ -name 'install_pavlov_*')
+    $install_pavlov
 fi
 
 if [ "$SERVER_NAME" = "Your_name_server" ] 
@@ -20,6 +21,12 @@ then
 
     sed -i "/Port=0000/c\Port=$RCON_PORT" /home/steam/pavlovserver/Pavlov/Saved/Config/RconSettings.txt
     echo "Updated port RCON to $RCON_PORT"
+fi
+
+if [ "$STATS_ENDPOINT" != "/api/PavlovShackStats/" ] 
+then
+    echo "Starting export stats task"
+    /home/steam/pavlovserver/ExportPavlovShackStats.sh $STATS_ENDPOINT >> /home/steam/pavlovserver/Pavlov/Saved/Logs/ExportPavlovShackStats.log &
 fi
 
 echo "Starting Pavlov Server"
