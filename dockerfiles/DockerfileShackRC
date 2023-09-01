@@ -9,7 +9,8 @@ ENV UPDATE_SERVER=True
 ENV STATS_ENDPOINT=/api/PavlovShackStats/
 
 # Install steam and create user
-RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev unzip nano
+RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev unzip nano python3
+RUN pip3 install async-pavlov
 RUN rm /usr/lib/x86_64-linux-gnu/libc++.so 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libc++.so.1 /usr/lib/x86_64-linux-gnu/libc++.so
 RUN useradd -m steam
@@ -24,6 +25,7 @@ RUN /home/steam/pavlovserver/install_pavlov_shack_rc.sh
 RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/Logs
 RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer
 RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/maps
+RUN mkdir -p /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/
 
 RUN touch /home/steam/pavlovserver/Pavlov/Saved/Config/mods.txt
 RUN touch /home/steam/pavlovserver/Pavlov/Saved/Config/blacklist.txt
@@ -34,6 +36,8 @@ COPY --chown=steam:steam ../configfiles/Game.ini /home/steam/pavlovserver/Pavlov
 
 # Configure RCON
 COPY --chown=steam:steam ../configfiles/RconSettings.txt /home/steam/pavlovserver/Pavlov/Saved/Config/
+COPY --chown=steam:steam ../configfiles/rcon.py /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/
+COPY --chown=steam:steam ../configfiles/menu_config.json /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/
 
 # Configure stats export
 COPY --chown=steam:steam ../configfiles/ExportPavlovShackStats.sh /home/steam/pavlovserver/

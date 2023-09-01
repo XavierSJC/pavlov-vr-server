@@ -1,0 +1,10 @@
+{
+    "endpoint": "http://127.0.0.1:11085/rcon",
+    "server": "<rcon_ip_or_domain>",
+    "port": <rcon_port>,
+    "password": "<rcon_password>",
+    "vote_round_time": 60,
+    "maps": [
+        ["Sand Description", "Sand", "GUN", "https://static.wikia.nocookie.net/pavlov/images/5/5a/Sand.jpg/revision/latest?cb=20220809201303"]
+    ]
+}
