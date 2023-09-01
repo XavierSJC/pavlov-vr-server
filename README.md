@@ -71,7 +71,7 @@ docker-compose up -d
 ## Changes log
 [`1.5.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.5.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Removed the chanel 'shack_beta', this channel was merged to chanel 'shack'
 
-[`1.4.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.4.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Avoid replace the name server and other configurations when restart the docker
+[`1.4.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.4.0): Avoid replace the name server and other configurations when restart the docker
 
 [`1.3.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.3.0): Small improvements to avoid duplicated code
 
