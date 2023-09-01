@@ -18,14 +18,9 @@ docker run -d --name pavlov-steam-server -p 7000:7000/udp -p 7400:7400/udp -p 77
 docker run -d --name pavlov-shack-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME="My Awesome Server" -e RCON_PWD=5gWXLAKCtBjA -e RCON_PORT=9100 -v pavlovShackData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-server:latest
 ```
 
-### Pavlov SHACK RC
-```
-docker run -d --name pavlov-shack-rc-server -p 7000:7000/udp -p 7400:7400/udp -p 7777:7777 -p 7777:7777/udp -p 8177:8177 -p 8177:8177/udp -p 9100:9100 -e SERVER_NAME="My Awesome Server" -e RCON_PWD=5gWXLAKCtBjA -e RCON_PORT=9100 -v pavlovShackRCData:/home/steam/pavlovserver/Pavlov/Saved powersjk/pavlov-vr-shack-rc-server:latest
-```
-
 After executing the command above your server will be available to play.
 You can check if your server is available looking for him on the page [Pavlov Horde](https://pavlovhorde.com/).
-Pay attention if you selected the right list ([Shack](https://pavlovhorde.com/), [Shack RC](https://pavlovhorde.com/serversRC) or [PC](https://pavlovhorde.com/pcServers)).
+Pay attention if you selected the right list ([Shack](https://pavlovhorde.com/) or [PC](https://pavlovhorde.com/pcServers)).
 
 ## Management of your server
 ### Admin Panel - Shack
@@ -44,25 +39,7 @@ The game has a admin panel on the menu game, to enable this menu put your Quest 
 ### Management maps
 These images don't provide custom maps
 
-#### Installing Custom Maps - SHACK
-To download more maps you will need to download them and copy them to folder `/home/steam/pavlovserver/Pavlov/Saved/maps` inside of your container.
-You can download custom maps on the site [PavlovHorde.com](https://pavlovhorde.com/mapsList). 
-
-To copy a folder from your host to inside of a container you can use the command:
-```
-$ docker cp Desktop/folder_map [imageId]:/home/steam/pavlovserver/Pavlov/Saved/maps
-```
-
-After downloading the maps, enable the maps in your server by adding this line in the file `/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini`
-```
-MapRotation=(MapId="<name_map>", GameMode="<game_mode>") 
-```
-You can edit this file with the command:
-```
-docker exec -it [imageId] nano /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini
-```
-
-#### Installing Custom Maps - PC and Shack RC
+#### Installing Custom Maps
 The <name_map> must be “UGC” followed by the map ID. 
 
 You can find the map id in the [mod.io](mod.io) page. Choose the map and in the righ side of the page use de number "Resource ID".
@@ -92,6 +69,8 @@ docker-compose up -d
 **Warning**: Do not forget to change the variable SERVER_NAME in the docker-compose.yml file (and other variables either).
 
 ## Changes log
+[`1.5.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.5.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Removed the chanel 'shack_beta', this channel was merged to chanel 'shack'
+
 [`1.4.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.4.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Avoid replace the name server and other configurations when restart the docker
 
 [`1.3.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.3.0): Small improvements to avoid duplicated code
