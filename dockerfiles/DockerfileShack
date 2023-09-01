@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 LABEL maintainer "XavierSJC"
 
@@ -6,9 +6,12 @@ ENV SERVER_NAME=Your_name_server
 ENV RCON_PWD=ChangeThisPassword
 ENV RCON_PORT=9100
 ENV UPDATE_SERVER=True
+ENV STATS_ENDPOINT=/api/PavlovShackStats/
 
 # Install steam and create user
-RUN apt update && apt install -y gdb curl wget nano lib32gcc1 libc++-dev unzip 
+RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev unzip nano
+RUN rm /usr/lib/x86_64-linux-gnu/libc++.so 
+RUN ln -s /usr/lib/x86_64-linux-gnu/libc++.so.1 /usr/lib/x86_64-linux-gnu/libc++.so
 RUN useradd -m steam
 USER steam
 
@@ -31,6 +34,9 @@ COPY --chown=steam:steam ../configfiles/Game.ini /home/steam/pavlovserver/Pavlov
 
 # Configure RCON
 COPY --chown=steam:steam ../configfiles/RconSettings.txt /home/steam/pavlovserver/Pavlov/Saved/Config/
+# Configure stats export
+COPY --chown=steam:steam ../configfiles/ExportPavlovShackStats.sh /home/steam/pavlovserver/
+RUN chmod +x /home/steam/pavlovserver/ExportPavlovShackStats.sh
 
 # Configure main script that runs server
 COPY --chown=steam:steam ../configfiles/ConfigureServer.sh /home/steam/pavlovserver/
