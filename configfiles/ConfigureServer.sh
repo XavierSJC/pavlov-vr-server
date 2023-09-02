@@ -29,13 +29,15 @@ then
     /home/steam/pavlovserver/ExportPavlovShackStats.sh $STATS_ENDPOINT >> /home/steam/pavlovserver/Pavlov/Saved/Logs/ExportPavlovShackStats.log &
 fi
 
-if [ "$MENU_MAP" == "YES" ] 
+if [ "$MENU_MAP" != "NO" ] 
 then
+    echo "Configuring relay Server"
     ipRCON=$(curl ifconfig.me)
     sed -i "s/<rcon_ip_or_domain>/$ipRCON/g" /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/menu_config.json
     sed -i "s/<rcon_port>/$RCON_PORT/g" /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/menu_config.json
     sed -i "s/<rcon_password>/$RCON_PWD/g" /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/menu_config.json
 
+    echo "Starting endpoint"
     python3 /home/steam/pavlovserver/Pavlov/Saved/Config/ModSave/rcon.py &
 fi
 
