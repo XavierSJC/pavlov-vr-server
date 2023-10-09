@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 LABEL maintainer "XavierSJC"
 
@@ -8,7 +8,9 @@ ENV RCON_PORT=9100
 ENV UPDATE_SERVER=True
 
 # Install steam and create user
-RUN apt update && apt install -y gdb curl wget nano lib32gcc1 libc++-dev unzip 
+RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev unzip nano
+RUN rm /usr/lib/x86_64-linux-gnu/libc++.so 
+RUN ln -s /usr/lib/x86_64-linux-gnu/libc++.so.1 /usr/lib/x86_64-linux-gnu/libc++.so 
 RUN useradd -m steam
 USER steam
 
