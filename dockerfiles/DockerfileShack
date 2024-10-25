@@ -3,9 +3,11 @@ FROM ubuntu:22.04
 LABEL maintainer "XavierSJC"
 
 ENV SERVER_NAME=Your_name_server
+ENV SERVER_PORT=7777
 ENV RCON_PWD=ChangeThisPassword
 ENV RCON_PORT=9100
 ENV UPDATE_SERVER=True
+ENV SHUFFLE_MAPS=False
 ENV STATS_ENDPOINT=/api/PavlovShackStats/
 
 # Install steam and create user
@@ -31,6 +33,8 @@ RUN touch /home/steam/pavlovserver/Pavlov/Saved/Config/whitelist.txt
 
 # Configuration and map list
 COPY --chown=steam:steam ../configfiles/Game.ini /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/
+COPY --chown=steam:steam ../configfiles/shuffleMaps.sh /home/steam/pavlovserver/
+RUN chmod +x /home/steam/pavlovserver/shuffleMaps.sh
 
 # Configure RCON
 COPY --chown=steam:steam ../configfiles/RconSettings.txt /home/steam/pavlovserver/Pavlov/Saved/Config/

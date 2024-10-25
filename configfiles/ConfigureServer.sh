@@ -23,6 +23,12 @@ then
     echo "Updated port RCON to $RCON_PORT"
 fi
 
+if [ "$SHUFFLE_MAPS" = "True" ] 
+then
+    echo "Shuffling map rotation"
+    /home/steam/pavlovserver/shuffleMaps.sh /home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini
+fi
+
 if [ "$STATS_ENDPOINT" != "/api/PavlovShackStats/" ] 
 then
     echo "Starting export stats task"
@@ -30,4 +36,4 @@ then
 fi
 
 echo "Starting Pavlov Server"
-/home/steam/pavlovserver/PavlovServer.sh
+/home/steam/pavlovserver/PavlovServer.sh -PORT=$SERVER_PORT
