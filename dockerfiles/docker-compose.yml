@@ -3,19 +3,16 @@ services:
   pavlov-shack-server:
     image: powersjk/pavlov-vr-shack-server:latest
     ports:
-      - "7000:7000/udp"
-      - "7400:7400/udp" 
       - "7777:7777"
       - "7777:7777/udp"
       - "8177:8177"
       - "8177:8177/udp"
-      - "${RCON_PORT-9100}:${RCON_PORT-9100}"
-    
+      - "9100:9100"
+
     environment:
-      SERVER_NAME: Your_name_server
-      RCON_PWD: ChangeThisPassword
-      RCON_PORT: ${RCON_PORT-9100}
-      UPDATE_SERVER: "True"
+      SERVER_NAME: My Awesome Server
+      RCON_PWD: 5gWXLAKCtBjA
+      RCON_PORT: 9100
 
     volumes:
       - pavlovData:/home/steam/pavlovserver/Pavlov/Saved

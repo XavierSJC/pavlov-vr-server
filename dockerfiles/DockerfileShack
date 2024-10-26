@@ -46,6 +46,6 @@ RUN chmod +x /home/steam/pavlovserver/ExportPavlovShackStats.sh
 COPY --chown=steam:steam ../configfiles/ConfigureServer.sh /home/steam/pavlovserver/
 RUN chmod +x /home/steam/pavlovserver/ConfigureServer.sh
 
-EXPOSE 7000/udp 7400/udp 7777 7777/udp 8177 8177/udp 9100
+EXPOSE 7777 7777/udp 8177 8177/udp 9100
 
 ENTRYPOINT ["/home/steam/pavlovserver/ConfigureServer.sh"]
