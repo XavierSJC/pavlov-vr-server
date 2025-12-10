@@ -1,4 +1,3 @@
-version: "3.2"
 services:
   pavlov-shack-server:
     image: powersjk/pavlov-vr-shack-server:latest
