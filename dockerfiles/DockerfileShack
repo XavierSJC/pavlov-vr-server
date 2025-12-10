@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL maintainer "XavierSJC"
+LABEL maintainer="XavierSJC"
 
 ENV SERVER_NAME=Your_name_server
 ENV SERVER_PORT=7777
