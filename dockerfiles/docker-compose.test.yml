@@ -1,0 +1,40 @@
+services:
+  pavlov-shack-server:
+    build: 
+      context: ..
+      dockerfile: dockerfiles/DockerfileShack
+    image: pavlov-vr-shack-server
+    ports:
+      - "7777:7777"
+      - "7777:7777/udp"
+      - "8177:8177"
+      - "8177:8177/udp"
+      - "9100:9100"
+
+    environment:
+      SERVER_NAME: My Awesome Server
+      RCON_PWD: 5gWXLAKCtBjA
+      RCON_PORT: 9100
+
+    volumes:
+      - ../tests/validate.sh:/validate.sh:ro
+
+  pavlov-steam-server:
+    build: 
+      context: ..
+      dockerfile: dockerfiles/DockerfileSteam
+    image: pavlov-vr-steam-server
+    ports:
+      - "7778:7778"
+      - "7778:7778/udp"
+      - "8178:8178"
+      - "8178:8178/udp"
+      - "9101:9101"
+
+    environment:
+      SERVER_NAME: My Awesome Server
+      RCON_PWD: 5gWXLAKCtBjA
+      RCON_PORT: 9100
+
+    volumes:
+      - ../tests/validate.sh:/validate.sh:ro
