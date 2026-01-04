@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM cm2network/steamcmd:root
 
 LABEL org.opencontainers.image.authors="github.com/XavierSJC"
 
@@ -10,11 +10,11 @@ ENV UPDATE_SERVER=True
 ENV SHUFFLE_MAPS=False
 ENV STATS_ENDPOINT=/api/PavlovShackStats/
 
-# Install steam and create user
-RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev unzip nano
-RUN rm /usr/lib/x86_64-linux-gnu/libc++.so 
+# Install pavlov server dependencies
+RUN apt update && apt install -y gdb curl lib32gcc-s1 libc++-dev
+RUN rm /usr/lib/x86_64-linux-gnu/libc++.so
 RUN ln -s /usr/lib/x86_64-linux-gnu/libc++.so.1 /usr/lib/x86_64-linux-gnu/libc++.so
-RUN useradd -m steam
+
 USER steam
 
 # Install Pavlov Server
