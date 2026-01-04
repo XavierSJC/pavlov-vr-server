@@ -1,19 +1,18 @@
 #!/bin/bash
+set -euo pipefail
 
-if [ -f "~/Steam/steamcmd.sh" ];
-then
+STEAM_HOME="/home/steam"
+INSTALL_DIR="${STEAM_HOME}/pavlovserver"
+SDK_SRC="$STEAM_HOME/Steam/steamapps/common/Steamworks SDK Redist/linux64/steamclient.so"
+
 echo -e "Beginning Pavlov VR update run on $(date)\n\n"
-else
-  echo "Installing Steam client"
-  mkdir ~/Steam && cd ~/Steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-  mkdir -p ~/.steam/sdk64
-fi
-
-echo "Installing Pavlov Steam"
-~/Steam/steamcmd.sh +force_install_dir /home/steam/pavlovserver +login anonymous +app_update 622970 +exit
-chmod +x ~/pavlovserver/PavlovServer.sh
 
 echo "Updating Steam Client"
-~/Steam/steamcmd.sh +login anonymous +app_update 1007 +quit
-cp ~/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
-cp ~/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ~/pavlovserver/Pavlov/Binaries/Linux/steamclient.so
+"$STEAM_HOME/steamcmd/steamcmd.sh" +login anonymous +app_update 1007 +quit
+
+echo "Installing Pavlov Steam"
+mkdir -p "$HOME/.steam/sdk64"
+"$STEAM_HOME/steamcmd/steamcmd.sh" +force_install_dir $INSTALL_DIR +login anonymous +app_update 622970 +exit
+chmod +x $INSTALL_DIR/PavlovServer.sh
+cp "$SDK_SRC" "$STEAM_HOME/.steam/sdk64/steamclient.so"
+cp "$SDK_SRC" "$STEAM_HOME/pavlovserver/Pavlov/Binaries/Linux/steamclient.so"
