@@ -98,9 +98,11 @@ docker build -t <tag>:<label> -f ./dockerfiles/Dockerfile .
 **The RCON is only enabled if you set a password**
 
 ## Changes log
-[`1.7.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.7.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Fixed script to works with docker-compose. Build on Pavlov Version 1.0.26
+[`1.8.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.8.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.8.0): Changed image base to [cm2network/steamcmd](https://github.com/CM2Walki/steamcmd/blob/master/trixie/Dockerfile) to simplify the dockerfiles.
 
-[`1.6.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.6.0), [`latest`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/main): Added the shuffle rotation maps and the option to choose the port server. Build on Pavlov Version 1.0.20
+[`1.7.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.7.0): Fixed script to works with docker-compose. Build on Pavlov Version 1.0.26
+
+[`1.6.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.6.0): Added the shuffle rotation maps and the option to choose the port server. Build on Pavlov Version 1.0.20
 
 [`1.5.0`](https://github.com/XavierSJC/pavlov-vr-quest-server/tree/v1.5.0): Removed the chanel 'shack_beta', this channel was merged to chanel 'shack'
 
